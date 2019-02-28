@@ -1,0 +1,147 @@
+
+
+.grid-container {
+
+    display: inline-grid;
+    grid-template-columns: 350px 150px 125px;
+    grid-template-rows: auto 200px 600px;
+    background-color: #2196F3;
+
+    /* border: 5px solid lightgrey;
+   #  padding: 5px;
+   ##  border-radius: 15px; */
+}
+input[type=text], select {
+    width: 50%;
+    padding: 7px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+.grid-item {
+    background-color: rgba(178, 228, 255, 1);
+
+    font-size: 30px;
+    text-align: center;
+}
+.grid-itemsearchicon {
+    position: relative;
+    left: 5px;
+    top: 5px;
+
+    align: left;
+
+}
+.grid-itemsearchtopleft {
+    background-color: rgba(211, 239, 255, 1);
+
+
+    font-size: 30px;
+
+}
+.grid-itemsearchinput{
+    position: relative;
+
+    top: +10px;
+
+}
+.locationinfo{
+    position: relative;
+    left: -40px;
+    top: -5px;
+    color : white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+}
+.locationicon{
+    position: relative;
+
+    top: 5px;
+
+
+}
+.grid-itemsearch {
+    background-color: rgba(211, 239, 255, 1);
+
+
+}
+.grid-itemwinfo {
+    font-family: Splatch;
+    src: url(Splatch.ttf);
+    font-weight: bold;
+
+
+    background-color: rgba(178, 228, 255, 1);
+    text-align: center;
+    line-height: 0.2;
+    font-size: 30px;
+    color : white;
+}
+.grid-itemwSign {
+    background-color: rgba(178, 228, 255, 1);
+
+
+
+    text-align: center;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+.grid-itemWTW {
+    font-family: crayon;
+    src: url(crayons.ttf);
+    font-weight: bold;
+    position: relative;
+
+    top: -30px;
+    font-size: 50px;
+    line-height: 1;
+    text-align: center;
+    color : white;
+}
+.Tips  {
+    font-family: crayon;
+    src: url(crayons.ttf);
+    font-weight: bold;
+    position: relative;
+
+    top: -60px;
+    font-size: 30px;
+    line-height: 0.3;
+    text-align: center;
+    color : white;
+}
+.grid-item6 {
+    background-color: rgba(178, 228, 255, 1);
+}
+.grid-item7 {
+    background-color: rgba(178, 228, 255, 1);
+
+
+    font-size: 30px;
+    text-align: center;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+.cdrawn {
+    position: relative;
+
+    left: -80px;
+}
+.closet  {
+    position: relative;
+
+    top: -50px;
+}
+.button {
+    background-color: Transparent;
+    /* Green */
+    border: none;
+    color: cornflowerblue;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

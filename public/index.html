@@ -1,41 +1,160 @@
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="theme-color" content="#000000" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+<html>
+<head>
+
+  <link rel="stylesheet" type="text/css" href="styleapp.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+
+
+<div class="grid-container">
+  <div class="grid-itemsearchtopleft">
+
+
+      <img class="grid-itemsearchicon" src="search.png" alt="Search" width="50" height="50" align="middle" onclick="Run()";>
+
+      <input class="grid-itemsearchinput" id="locinput" type="text" name="enter location" valign="top"><br>
+
+  </div>
+  <div class="grid-itemsearch">
+
+    <img class="locationicon" src="locationicon.png" alt="Search" width="50" height="50"  align="middle">
+  </div>
+  <div class="grid-itemsearch">
+    <h2 class="locationinfo" id="locinfo">LONDON</h2></div>
+
+  <div class="grid-itemwinfo">
+    <div id="root2"></div>
+
+    <script type="text/babel">
+      function Run(){
+        document.getElementById("locinfo").innerHTML = document.getElementById("locinput").value;
+      }
+      class Greeting extends React.Component {
+
+        render() {
+          return (
+
+
+                    <div>
+                        <div>
+
+                          <p id="wdesc"></p>
+                          <p id="temperature"></p>
+                          <p id="windspeed"></p>
+                          <p id="dt"></p>
+                          <p id="locdisplay"></p>
+
+                        </div>
+
+                    </div>
+
+
+        )
+
+
+        }
+      }
+      ReactDOM.render(
+              <Greeting />,
+              document.getElementById('root2')
+      );
+    </script>
+
+
+  </div>
+
+  <div class="grid-itemwSign">
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <script type="text/babel">
+      class Greeting extends React.Component {
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+
+        getweathers(){
+          let lockey = document.getElementById("locinfo").innerText;
+          let url = "http://api.openweathermap.org/data/2.5/weather?q=" + lockey + "&units=metric&APPID=b8ad883ff90d5a1d4653a17868558332";
+
+          $.ajax({
+            url,
+            dataType: "jsonp",
+            type: 'GET',
+
+            success: function(data){
+
+
+
+
+              document.getElementById("wdesc").innerHTML = "Description: " + data.weather[0].description;
+              document.getElementById("temperature").innerHTML = "Temperature: " + data.main.temp + "°C";
+              document.getElementById("windspeed").innerHTML = "Wind speed: " + data.wind.speed + "m/s";
+              document.getElementById("dt").innerHTML = "Time updated: " + data.dt;
+              document.getElementById("locdisplay").innerHTML = "Location: " + lockey;
+            },
+            error(req, err){ console.log('API call failed ' + err); }
+          })
+
+        }
+
+        render() {
+
+            return (
+
+
+              <div>
+
+
+                  <h1>{this.props.wdata}</h1>
+
+                  <button className="button"  onClick= { this.getweathers } >
+
+                    <img src="Btn.PNG" width="100" height="100" alt="Update Weather" />
+
+                  </button>
+              </div>);
+        }
+
+      };
+      ReactDOM.render(
+              <Greeting />,
+              document.getElementById('root')
+      );
+    </script>
+
+  </div>
+  <div class="grid-item6">
+
+    <p class="grid-itemWTW">WHAT TO WEAR! <BR> TOP TIPS!</p>
+    <p class="Tips">. Light Jacket</p>
+    <p class="Tips">. Shorts / Dress </p>
+    <p class="Tips">. Trainers </p>
+    <img class="closet" src="closet.png" alt="Search" style="width:250px;height:250px; align="middle">
+
+  </div>
+  <div class="grid-item7">
+
+    <img src="clothes.png" alt="Search" style="width:250px;height:250px; align="middle">
+    <img class="cdrawn" src="cdrawn.png" alt="Search" style="width:350px;height:350px; align="middle">
+  </div>
+
+
+</div>
+
+
+
+</body>
 </html>
+<script>
+
+
+</script>
+

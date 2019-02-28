@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../../js/browser.min.js"></script>
+    <style>
+        .grid-container {
+            display: inline-grid;
+            grid-template-columns: 300px 100px 125px;
+            grid-template-rows: auto 200px 500px;
+            background-color: #2196F3;
+
+            border: 5px solid lightgrey;
+            padding: 5px;
+            border-radius: 15px;
+        }
+
+        .grid-item {
+            background-color: rgba(91, 156, 205, 1);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+
+            font-size: 30px;
+            text-align: center;
+        }
+        .grid-itemsearch {
+            background-color: rgba(63, 163, 238, 1);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+
+            font-size: 30px;
+            text-align: center;
+        }
+        .grid-itemw {
+            background-color: rgba(91, 156, 205, 1);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+
+            font-size: 30px;
+
+        }
+        .grid-item5 {
+            background-color: rgba(91, 156, 205, 1);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+
+            font-size: 30px;
+            text-align: center;
+            grid-column-start: 2;
+            grid-column-end: 4;
+        }
+        .grid-item7 {
+            background-color: rgba(91, 156, 205, 1);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+
+            font-size: 30px;
+            text-align: center;
+            grid-column-start: 2;
+            grid-column-end: 4;
+        }
+    </style>
+</head>
+<body>
+
+<h1>The display Property:</h1>
+
+<div class="grid-container">
+    <div class="grid-itemsearch">search</div>
+    <div class="grid-itemsearch">icon</div>
+    <div class="grid-itemsearch">location</div>
+    <div class="grid-itemw">
+        <script>
+
+            var weatherinfo = React.createClass({
+                render() {
+                    // check if temperature data is fetched, if so add the sign styling to the page
+                    const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
+
+                    // display all weather data
+                    return (
+                        <div class={ style.container }>
+                            <div class={ style.header }>
+                                <h1> Weather information </h1>
+                                <div class={ style.city }>{ this.state.currentCity }</div>
+                                <div class={ style.country }>{ this.state.currentCountry }</div>
+                                <div class={ style.conditions }>{ this.state.cond }</div>
+                                <span class={ style.temperature }>{ this.state.temp }</span>
+                            </div>
+                            <div class={ style.details }></div>
+                            <div class={ style_ipad.container }>
+                                { this.state.display ? <Button class={ style_ipad.button } clickFunction={ this.fetchWeatherData }/ > : null }
+                                    </div>
+                                    </div>
+                                    );
+                                }
+                                });
+
+        </script>
+    </div>
+    <div class="grid-item5">
+
+        <script>
+
+        </script>
+
+    </div>
+    <div class="grid-item">6</div>
+    <div class="grid-item7">7</div>
+
+
+</div>
+
+<p>Set the <em>display</em> property to <em>inline-grid</em> to make an inline grid container.</p>
+
+
+</body>
+</html>
+<script>
+    // a constructor with initial set states
+    constructor(props){
+        super(props);
+        // temperature state
+        this.state.temp = "";
+        // button display state
+        this.setState({ display: true });
+    }
+
+    // a call to fetch weather data via wunderground
+    fetchWeatherData = () => {
+        // API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
+        let url = "http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=b8ad883ff90d5a1d4653a17868558332";
+        $.ajax({
+            url,
+            dataType: "jsonp",
+            success : this.parseResponse,
+            error(req, err){ console.log('API call failed ' + err); }
+        })
+        // once the data grabbed, hide the button
+        this.setState({ display: false });
+    }
+    parseResponse = (parsed_json) => {
+        let city = parsed_json['name'];
+        let country = parsed_json['sys']['country'];
+        let temp_c = parsed_json['main']['temp'];
+        let conditions = parsed_json['weather']['0']['description'];
+
+        // set the states for fields so they could be rendered later on
+        this.setState({
+            currentCity: city,
+            currentCountry: country,
+            temp: temp_c,
+            cond : conditions
+        });
+    }
+
+</script>
